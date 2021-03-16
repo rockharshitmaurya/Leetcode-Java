@@ -1,12 +1,15 @@
 class Solution {
+    static char[] arr;
     public void reverseString(char[] s) {
-       int start=0,end=s.length-1; 
-        while(start<end){
-          char temp =s[start];
-            s[start]=s[end];
-            s[end]=temp;
-            start++;
-            end--;
-        }
+        arr=s;
+        helper(0,s.length-1);
+    }
+    public static void helper(int idx,int last){
+        if(idx>=last) return;
+        char c=arr[idx];
+        arr[idx]=arr[last];
+        arr[last]=c;
+        helper(++idx,--last);
+        
     }
 }
