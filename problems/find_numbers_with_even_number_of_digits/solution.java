@@ -1,16 +1,11 @@
 class Solution {
+    int dlen(int len){
+        return len==0?0:1+dlen(len/10);
+    }
     public int findNumbers(int[] nums) {
-      int count=0,c=0;
-        for(int i:nums){
-            while(i>0){
-                i=i/10;
-                count++;
-            }
-            if(count%2==0){
-            c++;
-            }
-            count=0;
-        }
-        return c;
+        int count=0;
+        for(int i:nums)
+            if(dlen(i)%2==0) count++;
+        return count;
     }
 }
