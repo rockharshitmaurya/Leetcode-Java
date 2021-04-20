@@ -18,11 +18,14 @@ class Node {
 */
 
 class Solution {
-    ArrayList<Integer> list=new ArrayList<Integer>();
+    List<Integer> list=new ArrayList<>();
     public List<Integer> preorder(Node root) {
         if(root==null) return list;
-        list.add(root.val);
-        for(Node node:root.children) preorder(node);
+            list.add(root.val);
+        for(Node child:root.children){
+            preorder(child);   
+        }
+        
         return list;
     }
 }
