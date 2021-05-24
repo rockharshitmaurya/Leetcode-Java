@@ -1,12 +1,17 @@
 class Solution {
-    public String toLowerCase(String str) {
-      StringBuffer st=new StringBuffer();
-        for(char c:str.toCharArray()){
-            if(c>=65 && c<=90){
-                c=((char)(c+32));
+    public String toLowerCase(String s) {
+       StringBuilder sb=new StringBuilder();
+        for(char c:s.toCharArray()){
+            if(c<'a' && c>='A'){
+                int diff=c-'A';
+                diff+='a';
+                char ch=(char)diff;
+                // System.out.println(ch);
+                sb.append(ch);
+            }else{
+                sb.append(c);
             }
-            st.append(c);
         }
-        return st.toString();
+        return sb+"";
     }
 }
