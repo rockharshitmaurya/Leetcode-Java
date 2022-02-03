@@ -12,4 +12,4 @@ I plan to revise and publish all my solutions by three different languages.
 
 by Harshit Maurya
 
-![xcv58's Screenshot](https://user-images.githubusercontent.com/503123/34465526-8c29257e-ee7e-11e7-8482-dff916796f35.png)
+![xcv58's Screenshot](https://github.com/rockharshitmaurya/Leetcode-Java/blob/main/problems/watering_plants/screencapture-leetcode-progress-2022-02-03-10_25_03.png)
