@@ -1,10 +1,10 @@
-LeetCode
+Leetcode-Java
 ========
 
 [![CircleCI](https://circleci.com/gh/xcv58/LeetCode.svg?style=svg)](https://leetcode.com/HarshitMaurya/)
 [![Build Status](https://travis-ci.org/xcv58/LeetCode.svg?branch=master)](https://leetcode.com/HarshitMaurya/)
 
-The solutions of [LeetCode](https://oj.leetcode.com/problems/), iin Java version.
+The solutions of [LeetCode](https://oj.leetcode.com/problems/), in Java version.
 
 I've completed all problems of LeetCode by Java. You can see my screenshot in the end (it's pretty long).
 
