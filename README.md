@@ -1,8 +1,8 @@
 LeetCode
 ========
 
-[![CircleCI](https://circleci.com/gh/xcv58/LeetCode.svg?style=svg)](https://circleci.com/gh/xcv58/LeetCode)
-[![Build Status](https://travis-ci.org/xcv58/LeetCode.svg?branch=master)](https://travis-ci.org/xcv58/LeetCode)
+[![CircleCI](https://circleci.com/gh/xcv58/LeetCode.svg?style=svg)](https://leetcode.com/HarshitMaurya/)
+[![Build Status](https://travis-ci.org/xcv58/LeetCode.svg?branch=master)](https://leetcode.com/HarshitMaurya/)
 
 The solutions of [LeetCode](https://oj.leetcode.com/problems/), iin Java version.
 
