@@ -10,6 +10,11 @@ I've completed all problems of LeetCode by Java. You can see my screenshot in th
 
 I plan to revise and publish all my solutions by three different languages.
 
-by Harshit Maurya
+
+## Leetcode Profile
+
+- [@HarshitMaurya](https://leetcode.com/HarshitMaurya/)
+
+
 
 ![xcv58's Screenshot](https://github.com/rockharshitmaurya/Leetcode-Java/blob/main/problems/watering_plants/screencapture-leetcode-progress-2022-02-03-10_25_03.png)
