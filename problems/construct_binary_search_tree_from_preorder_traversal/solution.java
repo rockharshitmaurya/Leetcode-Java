@@ -14,29 +14,14 @@
  * }
  */
 class Solution {
-    public TreeNode bstFromPreorder(int[] po) {
-        TreeNode root=new TreeNode(po[0]);
-            Stack<TreeNode> stack=new Stack<>();
-        stack.push(root);
-        for(int i=1; i<po.length; i++){
-            int num=po[i];
-            TreeNode toadd=new TreeNode(num);
-            // System.out.println(num+" < "+stack.peek().val);
-            if(!stack.isEmpty() && num<stack.peek().val){
-                stack.peek().left=toadd;
-                
-            }else{
-               TreeNode p=null;
-                while(!stack.isEmpty() && stack.peek().val<num){
-                 p=stack.pop();
-               }
-                // if(!stack.isEmpty())
-                p.right=toadd;
-            }
-            stack.push(toadd);
-        }
-        // System.out.println(root.left.left.val);
-        
-        return root;
+    public TreeNode bstFromPreorder(int[] pre) {
+        return BST(pre,Integer.MAX_VALUE,new int[]{0});
+    }
+    TreeNode BST(int pre[],int max,int idx[]){
+        if(pre.length==idx[0] || pre[idx[0]]>max) return null;
+        TreeNode node=new TreeNode(pre[idx[0]++]);
+        node.left= BST(pre,node.val,idx);
+        node.right=BST(pre,max,idx);
+        return node;
     }
 }
