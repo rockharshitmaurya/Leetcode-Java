@@ -14,18 +14,19 @@
  * }
  */
 class Solution {
-    int res = 0;
+    int sum=0;
     public int minCameraCover(TreeNode root) {
-        return (dfs(root) < 1 ? 1 : 0) + res;
+        return helper(root)==-1?sum+1:sum;
     }
-
-    public int dfs(TreeNode root) {
-        if (root == null) return 2;
-        int left = dfs(root.left), right = dfs(root.right);
-        if (left == 0 || right == 0) {
-            res++;
-            return 1;
-        }
-        return left == 1 || right == 1 ? 2 : 0;
+    // -1 need camera
+    // 0 install camera
+    // alrdey coverd
+    int helper(TreeNode root){
+        if(root==null) return 1;
+        int l=helper(root.left);
+        int r=helper(root.right);
+        if(l==-1 || r==-1){ sum++; return 0; }
+         if(l==0 || r==0) return 1;
+        else return -1;
     }
 }
