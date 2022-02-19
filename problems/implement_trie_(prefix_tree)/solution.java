@@ -1,14 +1,18 @@
 class Node{
-    Node links[]=new Node[26];
-    boolean flag=false;
+    Node links[];
+    boolean flag;
+    public Node(){
+        links=new Node[26];
+        flag=false;
+    }
     boolean containsKey(char c){
         return links[c-'a']!=null;
     }
-    void put(int ch,Node node){
-        links[ch-'a']=node;
-    }
     Node get(char c){
         return links[c-'a'];
+    }
+    void put(char c,Node toadd){
+        links[c-'a']=toadd;
     }
     void setEnd(){
         flag=true;
@@ -16,42 +20,41 @@ class Node{
     boolean isEnd(){
         return flag;
     }
+       
 }
 class Trie {
-        Node root;
+    Node root;
     public Trie() {
         root=new Node();
     }
     
     public void insert(String word) {
         Node node=root;
-        for(int i=0; i<word.length(); i++){
-            if(node.containsKey(word.charAt(i))!=true){
-                node.put(word.charAt(i),new Node());
+        for(char c:word.toCharArray()){
+            if(!node.containsKey(c)){
+                node.put(c,new Node());
             }
-            node=node.get(word.charAt(i));
+            node=node.get(c);            
         }
         node.setEnd();
+        
     }
     
     public boolean search(String word) {
         Node node=root;
-        for(int i=0; i<word.length(); i++){
-            if(!node.containsKey(word.charAt(i))){
-                return false;
-            }
-            node=node.get(word.charAt(i));
+        for(char c:word.toCharArray()){
+            if(!node.containsKey(c)) return false;
+            
+            node=node.get(c);
         }
         return node.isEnd();
     }
     
     public boolean startsWith(String prefix) {
         Node node=root;
-        for(int i=0; i<prefix.length(); i++){
-            if(!node.containsKey(prefix.charAt(i))){
-                return false;
-            }
-           node=node.get(prefix.charAt(i)); 
+        for(char c:prefix.toCharArray()){
+            if(!node.containsKey(c)) return false;
+            node=node.get(c);
         }
         return true;
     }
