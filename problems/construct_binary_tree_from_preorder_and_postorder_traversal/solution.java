@@ -15,18 +15,28 @@
  */
 class Solution {
     public TreeNode constructFromPrePost(int[] pre, int[] post) {
-           Deque<TreeNode> q=new ArrayDeque<>();
-            q.offer(new TreeNode(pre[0]));
-        for(int i=1,j=0; i<pre.length; ++i){
-            TreeNode node=new TreeNode(pre[i]);
-            while(q.getLast().val==post[j]){
-                q.pollLast();
-                j++;
-            }
-            if(q.getLast().left==null) q.getLast().left=node;
-            else q.getLast().right=node;
-            q.offer(node);
+        HashMap<Integer,Integer> pref=new HashMap<>();
+        HashMap<Integer,Integer> postf=new HashMap<>();
+        for(int i=0; i<pre.length; i++){
+            pref.put(pre[i],i);
+            postf.put(post[i],i);
         }
-        return q.getFirst();
+        // System.out.println(pref);
+        // System.out.println(postf);
+        
+        return makeTree(pre,post,0,pre.length-1,pref,postf);
     }
+    TreeNode makeTree(int[] pre,int[] post,int lb,int rb,HashMap<Integer,Integer> premap,HashMap<Integer,Integer> postmap){
+    if(lb>rb) return null;
+        
+    TreeNode root=new TreeNode(pre[lb]);
+    if(lb==rb) return root;
+    int middle=premap.get(post[postmap.get(pre[lb])-1]);
+        root.left=makeTree(pre,post,lb+1,middle-1,premap,postmap);
+        root.right=makeTree(pre,post,middle,rb,premap,postmap);
+        
+        
+    return root;
+        
+}
 }
