@@ -15,23 +15,14 @@
  */
 class Solution {
     public int pseudoPalindromicPaths (TreeNode root) {
-        int arr[]=new int[1];
-        helper(root,new HashMap<Integer,Integer>(),arr);
-        return arr[0];
+        return dfs(root, 0);
     }
-    
-    void helper(TreeNode root,HashMap<Integer,Integer> map,int arr[]){
-        if(root==null) return;
-        map.put(root.val,map.getOrDefault(root.val,0)+1);
-        if(root.left==null && root.right==null){
-            int count=0;
-            for(int val:map.values()){
-                if(val%2!=0) count++;
-            }
-            if(count<=1) arr[0]++;
-        }
-        helper(root.left,map,arr);
-        helper(root.right,map,arr);
-        map.put(root.val,map.getOrDefault(root.val,0)-1);
+
+    private int dfs(TreeNode root, int count) {
+        if (root == null) return 0;
+        count ^= 1 << (root.val);
+        int res = dfs(root.left, count) + dfs(root.right, count);
+        if (root.left == null && root.right==null && (count & (count - 1)) == 0) res++;
+        return res;
     }
 }
