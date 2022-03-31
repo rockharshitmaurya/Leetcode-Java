@@ -1,34 +1,36 @@
 class Solution {
     public int splitArray(int[] nums, int m) {
-     int left=0,right=0;
+      
+        int low=0,high=0;
         for(int num:nums){
-            left=Math.max(left,num);
-            right+=num;
+           low=Math.max(low,num);
+           high+=num;
         }
-        int ans=right;
-        while(left<=right){
-            int mid=left+(right-left)/2;
-            if(getNoOfSubArray(nums,mid,m)==false){
-                left=mid+1;
+        int ans=high;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(findSubArray(nums,mid,m)==false){
+                low=mid+1;
             }else{
                 ans=mid;
-                right=mid-1;
-            }
-        }
-        return ans;
-    }
-    boolean getNoOfSubArray(int arr[],int limit,int subarr){
-        int ans=0,count=1;
-        for(int num:arr){
-            if(num>limit) return false;
-            if(ans+num>limit){
-                count++;
-                ans=num;
-            }else{
-                ans+=num;
+                high=mid-1;
             }
             
         }
-        return count<=subarr;
+        return ans;
+    }
+    boolean findSubArray(int arr[],int mid,int m){
+        int count=1;
+        int sum=0;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]>mid) return false;
+            if(sum+arr[i]>mid){
+                sum=arr[i];
+                count++;
+            }else{
+                sum+=arr[i];
+            }
+        }
+        return count<=m;
     }
 }
