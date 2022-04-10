@@ -1,29 +1,28 @@
 class Solution {
     public int calPoints(String[] ops) {
-      int res=0,last=0;
-        Stack<Integer> stack=new Stack<Integer>();
-        for(String S:ops){
-         
-                if(S.equals("C")){
-                    res-=stack.pop();
-                }else if(S.equals("D")){
-                    stack.push(stack.peek()*2);
-                    res+=stack.peek();
-                    
-                }else if(S.equals("+")){
-                    stack.push(stack.peek()+stack.get(stack.size()-2));
-                    res+=stack.peek();
-                }else{
-                last=Integer.parseInt(S);
-                res+=last;
-                stack.push(last);
+       Stack<String> st=new Stack<>();
+         int ans=0;
+        for(String str:ops){
+            if(str.equals("+")){
+                int num1=Integer.parseInt(st.pop());
+                int num2=Integer.parseInt(st.pop());
+                st.push(String.valueOf(num2));
+                 st.push(String.valueOf(num1));
+                 st.push(String.valueOf(num1+num2));
+                ans+=(num1+num2);
+            }else if(str.equals("C")){
+                ans-=Integer.parseInt(st.pop());
+            }else if(str.equals("D")){
+                int num1=Integer.parseInt(st.pop());
+                st.push(String.valueOf(num1));
+                 st.push(String.valueOf(num1*2));
+                ans+=(num1*2);
+            }else{
+                st.push(str);
+                ans+=Integer.parseInt(str);
             }
-            
         }
-        // res=0;
-        // while(!stack.isEmpty()){
-        //    res+=stack.pop(); 
-        // }
-        return res;  
+       
+        return ans;
     }
 }
