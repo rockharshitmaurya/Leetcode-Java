@@ -18,10 +18,11 @@ class Solution {
 		//Open Notes
         if (root == null) return root;
 		Stack<TreeNode> st = new Stack<>();
-		st.push(root);
+		st.push(root);  
 		if (root.val < low || root.val > high) {
 			root = helper(root, low, high);
 		}
+                 // System.out.println(root.val);
 		while (!st.isEmpty()) {
 			TreeNode node = st.pop();
 			if (node.left != null) {
