@@ -19,22 +19,15 @@ class Solution {
         if(root==null) return root;
         TreeNode res=new TreeNode(0);
         cur=res;
-//         TreeNode main=root
-//         increasingBST(root.left);
-//         main.right=root;
-//         increasingBST(root.right);
         help(root);
         return res.right;
     }
     void help(TreeNode root){
         if(root==null) return;
-      
         help(root.left);
         cur.right=root;
         root.left=null;
         cur=root;
         help(root.right);
-        // root.right=root;
-        // root.left=null;
     }
 }
