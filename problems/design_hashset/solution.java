@@ -1,41 +1,21 @@
 class MyHashSet {
-
-    /** Initialize your data structure here. */
-//     int set[];
-//     public MyHashSet() {
-//        set=new int[10000001]; 
-//     }
-    
-//     public void add(int key) {
-//         if(set[key]==0) set[key]++;
-        
-//     }
-    
-//     public void remove(int key) {
-//        if(set[key]>0) set[key]--;
-//     }
-    
-//     /** Returns true if this set contains the specified element */
-//     public boolean contains(int key) {
-//         return set[key]>0;
-//     }
-    boolean[] hashSet;
-    /** Initialize your data structure here. */
+    int arr[];
     public MyHashSet() {
-         hashSet = new boolean[1000001];
+        arr=new int[10000001];
+        Arrays.fill(arr,-1);
     }
     
     public void add(int key) {
-        hashSet[key] = true;
+        arr[key]=1;
     }
     
     public void remove(int key) {
-        hashSet[key] = false;
+        arr[key]=-1;
     }
     
-    /** Returns true if this set contains the specified element */
     public boolean contains(int key) {
-        return hashSet[key];
+        // System.out.println(Arrays.toString(arr));
+        return arr[key]!=-1;
     }
 }
 
