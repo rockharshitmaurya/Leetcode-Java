@@ -15,6 +15,6 @@ I plan to revise and publish all my solutions by three different languages.
 
 - [@HarshitMaurya](https://leetcode.com/HarshitMaurya/)
 
-
+![Leetcode Stats](https://leetcode.card.workers.dev/?username=HarshitMaurya&theme=nord)
 
 ![xcv58's Screenshot](https://github.com/rockharshitmaurya/Leetcode-Java/blob/main/problems/watering_plants/screencapture-leetcode-progress-2022-02-03-10_25_03.png)
