@@ -14,21 +14,25 @@
  * }
  */
 class Solution {
-     int res=0;
+    int sum=0;
     public int deepestLeavesSum(TreeNode root) {
-        if(root==null) return 0;
-              
-        maxh(root,0);
-        return res;
+      int hight=depth(root);
+      dfs(root,hight-1,0);
+      return sum;
     }
-   int maxlevel=0;
-    int maxh(TreeNode root,int level){
-       if(root==null) return 0;
-        if(level>maxlevel){
-            res=0;
-            maxlevel=level;
-        }
-        if(level==maxlevel) res+=root.val;
-        return Math.max(maxh(root.left,level+1),maxh(root.right,level+1));
+    int depth(TreeNode root){
+        if(root==null) return 0;
+        
+        int lh=depth(root.left);
+        int rh=depth(root.right);
+        
+        return 1+Math.max(lh,rh);
+    }
+    void dfs(TreeNode root,int h,int l){
+        if(root==null) return;
+        if(h==l) sum+=root.val;
+        // System.out.println(l);
+        dfs(root.left,h,l+1);
+        dfs(root.right,h,l+1);
     }
 }
