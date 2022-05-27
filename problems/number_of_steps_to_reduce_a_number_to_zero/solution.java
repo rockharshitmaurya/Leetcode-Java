@@ -1,10 +1,6 @@
 class Solution {
-    public int numberOfSteps (int num) {
-        int count=0;
-        while(num!=0){
-        num=((num&1)==0)?num/2:num-1;
-            count++;
-        }
-        return count;
+    public int numberOfSteps(int num) {
+        if(num==0) return 0;
+        return (int)(Math.log(num)/Math.log(2))+Integer.bitCount(num);
     }
 }
