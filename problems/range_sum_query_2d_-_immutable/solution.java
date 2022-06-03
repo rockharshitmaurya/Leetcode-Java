@@ -1,15 +1,22 @@
 class NumMatrix {
-    int mat[][];
+    int ans[][];
     public NumMatrix(int[][] matrix) {
-        mat=matrix;
+            for(int i=0; i<matrix.length; i++){
+                int runningsum=0;
+                for(int j=0; j<matrix[0].length; j++){
+                    runningsum+=matrix[i][j];
+                    matrix[i][j]=runningsum;
+                }
+            }
+        ans=matrix;
+        System.out.println(Arrays.deepToString(ans));
     }
     
     public int sumRegion(int row1, int col1, int row2, int col2) {
         int sum=0;
         for(int i=row1; i<=row2; i++){
-            for(int j=col1; j<=col2; j++){
-                sum+=mat[i][j];
-            }
+            if(col1==0) sum+=ans[i][col2];
+            else sum+=(ans[i][col2]-ans[i][col1-1]);
         }
         return sum;
     }
