@@ -1,36 +1,53 @@
 class Solution {
-private final Set<Integer> occupiedCols = new HashSet<Integer>();
-private final Set<Integer> occupiedDiag1s = new HashSet<Integer>();
-private final Set<Integer> occupiedDiag2s = new HashSet<Integer>();
-public int totalNQueens(int n) {
-    return totalNQueensHelper(0, 0, n);
-}
-
-private int totalNQueensHelper(int row, int count, int n) {
-    for (int col = 0; col < n; col++) {
-        if (occupiedCols.contains(col))
-            continue;
-        int diag1 = row - col;
-        if (occupiedDiag1s.contains(diag1))
-            continue;
-        int diag2 = row + col;
-        if (occupiedDiag2s.contains(diag2))
-            continue;
-        // we can now place a queen here
-        if (row == n-1)
+    int count=0;
+    public int totalNQueens(int n) {
+        char board[][]=new  char[n][n];
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                board[i][j]='.';
+            }
+        }
+        helper(board,0);
+      return count;  
+    }
+    void helper(char board[][],int row){
+        if(row==board.length){
             count++;
-        else {
-            occupiedCols.add(col);
-            occupiedDiag1s.add(diag1);
-            occupiedDiag2s.add(diag2);
-            count = totalNQueensHelper(row+1, count, n);
-            // recover
-            occupiedCols.remove(col);
-            occupiedDiag1s.remove(diag1);
-            occupiedDiag2s.remove(diag2);
+            return;
+        }
+        for(int col=0; col<board.length; col++){
+            if(board[row][col]=='.' && isQueenSafe(board,row,col)){
+                board[row][col]='Q';
+                helper(board,row+1);
+                board[row][col]='.';
+            }
         }
     }
-    
-    return count;
-}
+     boolean isQueenSafe(char chess[][],int row,int col){
+        for(int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--){
+            if(chess[i][j] == 'Q'){
+                return false;
+            }
+        }
+
+        for(int i = row - 1, j = col; i >= 0; i--){
+            if(chess[i][j] == 'Q'){
+                return false;
+            }
+        }
+
+        for(int i = row - 1, j = col + 1; i >= 0 && j < chess.length; i--, j++){
+            if(chess[i][j] == 'Q'){
+                return false;
+            }
+        }
+
+        for(int i = row, j = col - 1; j >= 0; j--){
+            if(chess[i][j] == 'Q'){
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
