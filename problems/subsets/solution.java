@@ -1,21 +1,14 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> ans=new ArrayList<>();
-        helpr(nums,nums.length,0,new ArrayList<Integer>(),ans);
+        int n=nums.length;
+        for(int i=0; i<(1<<n); i++){
+            ArrayList<Integer> ds=new ArrayList<>();
+            for(int j=0; j<n; j++){
+                if((i&(1<<j))>0) ds.add(nums[j]);
+            }
+            ans.add(ds);
+        }
         return ans;
     }
-    static void helpr(int arr[],int n,int i,ArrayList<Integer> list,List<List<Integer>> ans){
-        if(i==n){
-            // System.out.println(list);
-            ans.add(new ArrayList<>(list));
-            return;
-        }
-        list.add(arr[i]);
-            //Take the particular index into Subsequences
-        helpr(arr,n,i+1,list,ans);
-        list.remove(list.size()-1);
-            //Do Not Take the particular index into Subsequences
-        helpr(arr,n,i+1,list,ans);
-    }
-
 }
