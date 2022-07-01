@@ -1,16 +1,13 @@
 class Solution {
     public int rob(int[] nums) {
-        int memo[]=new int[nums.length+1];
-        Arrays.fill(memo,-1);
-        return rober(nums,nums.length-1,memo);
-    }
-    int rober(int arr[],int len,int memo[]){
-        if(len<0) return 0;
-        if(memo[len]>=0){
-        return memo[len];
+        int n=nums.length;
+        int dp[]=new int[n];
+        dp[0]=nums[0];
+        for(int i=1; i<n; i++){
+            int take=nums[i]+((i>1)?dp[i-2]:0); //take the current value and add the non adjcent(-2) index value to cuurent path
+            int nottake=0+dp[i-1]; //do not add the current index just add prev dp calculated value
+            dp[i]=Math.max(take,nottake);
         }
-            int res=Math.max(rober(arr,len-1,memo),arr[len]+rober(arr,len-2,memo));
-            memo[len]=res;
-            return res; 
+        return dp[n-1];
     }
 }
