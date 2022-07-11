@@ -15,16 +15,16 @@
  */
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> res=new ArrayList<>();
-        check(root,res,0);
-        return res;
+        List<Integer> ans=new LinkedList<>();
+        dfs(root,0,ans);
+        return ans;
     }
-    void check(TreeNode node,List<Integer> res,int level){
-        if(node==null) return;
-        if(res.size()==level){
-            res.add(node.val);
+    void dfs(TreeNode root,int level,List<Integer> ans){
+        if(root==null) return;
+        if(ans.size()==level){
+            ans.add(root.val);
         }
-        check(node.right,res,level+1);
-        check(node.left,res,level+1);
+        dfs(root.right,level+1,ans);
+        dfs(root.left,level+1,ans);
     }
 }
