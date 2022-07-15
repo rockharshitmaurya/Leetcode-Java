@@ -1,33 +1,19 @@
 class Solution {
-    public int maxProfit(int[] P, int fee) {
-      // int obsp=-arr[0]; //old bougth state profit
-      //   int ossp=0; //old sold state profit
-      //   for(int i=1; i<arr.length; i++){
-      //       int nbsp=0;
-      //       int nssp=0;
-      //       if(ossp-arr[i]>obsp){
-      //           nbsp=ossp-arr[i];
-      //       }else{
-      //           nbsp=obsp;
-      //       }
-      //       if(obsp+arr[i]-fee>ossp){
-      //        nssp=obsp+arr[i]-fee;   
-      //       }else{
-      //           nssp=ossp;
-      //       }
-      //       obsp=nbsp;
-      //       ossp=nssp;
-      //   }
-      //   return ossp;
+    public int maxProfit(int[] prices, int fee) {
+            int n=prices.length;
+        int dp[][]=new int[n+1][2];
         
-       
-        int len = P.length, buying = -P[0], selling = 0;
-        for (int i = 1; i < len; i++) {
-            buying = Math.max(buying, selling - P[i]);
-            selling = Math.max(selling, (buying+P[i] - fee));
+        for(int i=n-1; i>=0; i--){
+            for(int buy=0; buy<=1; buy++){
+                int profit=0;
+                if(buy==1){
+                    profit=Math.max(-(prices[i]+fee)+dp[i+1][0],0+dp[i+1][1]);
+                }else{
+                    profit=Math.max(prices[i]+dp[i+1][1],0+dp[i+1][0]);
+                }
+                dp[i][buy]=profit;
+            }
         }
-        return selling;
-    
-
+        return dp[0][1];
     }
 }
