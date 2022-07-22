@@ -10,20 +10,19 @@
  */
 class Solution {
     public ListNode partition(ListNode head, int x) {
-        ListNode frontd=new ListNode(0),backd=new ListNode(0),front=frontd,back=backd,cur=head;
-        while(cur!=null){
-            if(cur.val<x){
-                front.next=cur;
-                front=cur;
+        ListNode dummy=new ListNode(0),tail=new ListNode(0);
+        ListNode temp=head,t_head=dummy,t_tail=tail;
+        while(temp!=null){
+            if(temp.val<x){
+                t_head.next=new ListNode(temp.val);
+                t_head=t_head.next;
             }else{
-                back.next=cur;
-                back=cur;
+                tail.next=new ListNode(temp.val);
+                tail=tail.next;
             }
-            cur=cur.next;
+            temp=temp.next;
         }
-        front.next=backd.next;
-        back.next=null;
-        return frontd.next;
-        
+        t_head.next=t_tail.next;
+        return dummy.next;
     }
 }
