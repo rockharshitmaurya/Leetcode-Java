@@ -6,7 +6,8 @@ class FoodRatings {
             for(int i=0; i<foods.length; i++){
                 
                 if(!type.containsKey(cui[i])){
-                    type.put(cui[i],new PriorityQueue<Pair>((o1,o2)->( (o1.rt!=o2.rt)?(o2.rt-o1.rt):(o1.fd.compareTo(o2.fd)))));
+                     PriorityQueue<Pair> p=new PriorityQueue<Pair>((o1,o2)->( (o1.rt!=o2.rt)?(o2.rt-o1.rt):(o1.fd.compareTo(o2.fd))));
+                    type.put(cui[i],p);
                 }
                 Pair p=new Pair(foods[i],ratings[i],cui[i]);
                 type.get(cui[i]).add(p);
@@ -16,26 +17,14 @@ class FoodRatings {
     }
     
     public void changeRating(String food, int newRating) {
-        // rating.get(food).rt=newRating;
         Pair p=rating.get(food);
         String cui=p.cu;
         type.get(cui).remove(p);
         p.rt=newRating;
         type.get(cui).add(p);
-        // type.put(rating.get(food).cu,)
     }
     
     public String highestRated(String cuisine) {
-        // type.put("Temp",new PriorityQueue<Pair>((o1,o2)->( (o1.rt!=o2.rt)?(o2.rt-o1.rt):(o1.fd.compareTo(o2.fd)))));
-//         PriorityQueue<Pair> p=type.get(cuisine);
-//             for(Pair pq:p){
-                
-            
-//                 // for(Pair p:pq){
-//                     System.out.print(pq.fd+"-->"+pq.rt+" ");
-//                 // }
-//             }
-//         System.out.println();
           return type.get(cuisine).peek().fd;
     }
 }
@@ -50,3 +39,11 @@ class Pair{
         this.cu=cu;
     }
 }
+//map-->keyfood-->
+
+/**
+ * Your FoodRatings object will be instantiated and called as such:
+ * FoodRatings obj = new FoodRatings(foods, cuisines, ratings);
+ * obj.changeRating(food,newRating);
+ * String param_2 = obj.highestRated(cuisine);
+ */
