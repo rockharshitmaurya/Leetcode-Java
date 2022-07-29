@@ -1,26 +1,29 @@
 class Solution {
     public List<String> findAndReplacePattern(String[] words, String pattern) {
-       List<String> list =new ArrayList<>();
-        pattern=normal(pattern);
-        // System.out.println(normal("mkk"));        
+        ArrayList<String> ans=new ArrayList<>();
+        pattern=normalize(pattern);
         for(String str:words){
-           if(pattern.startsWith(normal(str))){
-               list.add(str);
-           } 
+            String nor_str=normalize(str);
+            if(nor_str.equals(pattern)){
+                ans.add(str);
+            }
         }
-        return list;
+        return ans;
     }
-    String normal(String str){
+    String normalize(String str){
+        
+        int hash[]=new int[26];
+        
         StringBuilder sb=new StringBuilder();
-        HashMap<Character,Character> map=new HashMap<>();
-        char ch='a';
+        
         for(int i=0; i<str.length(); i++){
-            char key=str.charAt(i);
-            map.put(key,map.getOrDefault(key,ch++));
-            sb.append(map.get(key));
-            // System.out.print(ch+" ");
+              int ch=str.charAt(i)-'a';
+              if(hash[ch]==0) hash[ch]=i+1;
+              sb.append(hash[ch]);
+            
         }
-        // sb.append(count);
         return sb.toString();
     }
 }
+
+    
