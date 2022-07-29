@@ -9,32 +9,15 @@
  * }
  */
 class Solution {
-    TreeNode prev=null;
     public int pairSum(ListNode head) {
-        ListNode slow=head,fast=head;
-        while(slow.next!=null && fast.next.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-        }
-        slow.next=helper(slow.next);
-        int max=Integer.MIN_VALUE;
-        slow=slow.next;
-        while(slow!=null){
-            max=Math.max(max,(head.val+slow.val));
-            slow=slow.next;
-            head=head.next;
-        }
-            return max;
+        return sum(head,new ListNode[]{head});
     }
-    ListNode helper(ListNode root){
-       ListNode prevHead=null;
-        while(root!=null){
-            ListNode recordNext=root.next;
-            root.next=prevHead;
-            prevHead=root;
-            root=recordNext;
-        }
-        return prevHead;
-        
+    
+    int sum(ListNode head,ListNode arr[]){
+        if(head==null) return 0;
+        int value=sum(head.next,arr);
+        int start=arr[0].val; arr[0]=arr[0].next;
+        int end=head.val;
+        return Math.max(value,start+end);
     }
 }
